@@ -120,16 +120,7 @@ public:
 					bundleExit ();
 			}
 
-#if defined(MAC_OS_X_VERSION_10_11)
-			// workaround, because CFBundleCreate returns refcount == 2.
-			if (CFBundleIsExecutableLoaded ((CFBundleRef)instance))
-			{
-				CFBundleUnloadExecutable ((CFBundleRef)instance);
-				CFRelease ((CFBundleRef)instance);
-			}
-#else
 			CFRelease ((CFBundleRef)instance);
-#endif
 			instance = 0;
 			isloaded = false;
 		}
